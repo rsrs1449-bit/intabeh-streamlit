@@ -13,7 +13,8 @@ os.environ['TF_CPP_MIN_LOG_LEVEL']='2'
 os.environ['TF_NUM_INTEROP_THREADS']='1'
 os.environ['TF_NUM_INTRAOP_THREADS']='1'
 sys.path.insert(0,str(ROOT/'07_WEB_APP'/'source'/'backend'))
-from intabeh_service import preprocess, live_clip_probs, LABELS_AR, lockimport intabeh_inference as inf
+from intabeh_service import preprocess, live_clip_probs, LABELS_AR, lock
+import intabeh_inference as inf
 st.set_page_config(page_title='انتبه | INTABEH',page_icon='🔔',layout='centered')
 st.markdown('<div dir="rtl" style="text-align:right"><h1>🔔 انتبه | INTABEH</h1><p>تجربة نشر للنموذج الأساسي المعتمد Core V1</p></div>',unsafe_allow_html=True)
 st.info('نسخة اختبار للنشر: سجّل مقطعًا ثم اضغط تحليل. ليست مراقبة صوتية مستمرة ولا بديلًا لأنظمة السلامة.')
