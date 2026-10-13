@@ -230,5 +230,3 @@ class NoCacheStatic(StaticFiles):
 
 if PUBLIC.is_dir():
     app.mount("/", NoCacheStatic(directory=str(PUBLIC), html=True), name="web")
-# Streamlit deployments do not include the separate static web frontend.
-
