@@ -79,4 +79,3 @@ class IntabehModel:
             return a
         t = self.thresholds[a]
         return a if t is None or p[a] >= t else self.bg
-
