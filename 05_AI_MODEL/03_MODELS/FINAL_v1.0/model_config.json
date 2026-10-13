@@ -1,0 +1,56 @@
+{
+  "config_version": "0.2",
+  "status": "Day 3 BEST_MODEL v0.1_expC (Validation only; Test not yet used). Day 1 template archived in 15_ARCHIVE/old_documents/day3_model_config/.",
+  "class_map_file": "03_DATASET/04_METADATA/class_map_v1.0.json",
+  "class_labels_file": "05_AI_MODEL/05_CONFIG/class_labels.json",
+  "preprocessing_config_file": "03_DATASET/04_METADATA/preprocessing_config_v1.0.json",
+  "audio": {
+    "sample_rate_hz": 16000,
+    "channels": 1,
+    "waveform_dtype": "float32",
+    "waveform_range": [-1.0, 1.0],
+    "window_samples": 15600,
+    "hop_samples": 7680,
+    "note": "15,600 samples = exactly one YAMNet embedding without internal padding (D-014)"
+  },
+  "feature_extractor": {
+    "name": "YAMNet",
+    "pretrained": true,
+    "trainable": false,
+    "source": "TF-Hub https://tfhub.dev/google/yamnet/1 (cached locally in .venv/tfhub_cache)",
+    "frame_window_sec": 0.96,
+    "frame_hop_sec": 0.48,
+    "embedding_dim": 1024,
+    "clip_embedding_pooling": "none for training (one example per active window); clip probability = mean of window probabilities"
+  },
+  "classifier": {
+    "type": "dense network on YAMNet embeddings (tf_keras)",
+    "best_model": "05_AI_MODEL/03_MODELS/BEST_MODEL (copy of v0.1_expC)",
+    "input_standardization": "Normalization layer adapted on Train windows only (inside the model)",
+    "hidden_layers": [256],
+    "activation": "relu",
+    "dropout": 0.3,
+    "l2": 0.0001,
+    "optimizer": "Adam",
+    "learning_rate": 0.001,
+    "batch_size": 64,
+    "max_epochs": 200,
+    "early_stopping_metric": "Validation loss (patience 15, restore best weights)",
+    "class_weighting": "square root of balanced weights (Train windows)",
+    "random_seed": 20260924,
+    "train_max_active_windows_per_clip": 20
+  },
+  "decision": {
+    "threshold_strategy": "per-class thresholds selected on the VALIDATION split only; never on Test",
+    "preliminary_thresholds_file": "05_AI_MODEL/05_CONFIG/thresholds_v0.1.json",
+    "rule": "alert class c if argmax == c and p_c >= threshold_c; otherwise no alert (background_other)",
+    "non_alert_class": "background_other",
+    "silence_gate_dbfs": -60.0,
+    "temporal_smoothing": "TO DECIDE on Day 4-5 (live stream)",
+    "smoke_fire_alarm_note": "not threshold-tuned on Day 3 (3 Validation clips); argmax default; never claims fire/smoke detection."
+  },
+  "export": {
+    "target_formats": ["TO DECIDE on Day 4-5: browser runtime for YAMNet + classifier"],
+    "output_dir": "05_AI_MODEL/03_MODELS/"
+  }
+}

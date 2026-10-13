@@ -1,0 +1,26 @@
+{
+  "package": "FINAL_v1.0",
+  "source_model": "BEST_MODEL = v0.1_expC (Day 3)",
+  "inference_version": "1.0",
+  "frozen_utc": "2026-09-24T04:19:34+00:00",
+  "frozen_before_test": true,
+  "files_sha256": {
+    "model.keras": "1b9276f1f66d6a3be854ae19a67dcf55f1b9621178cf0bcb76ffdf69da644113",
+    "class_labels.json": "666c821b24c28641ddcf2e31b15961e16b44bb8d137a4eadf177f5255ba1ba33",
+    "thresholds_v0.1.json": "c71da8c0958a2e7c981fb6f3ec34995868b9cef2b3a94f0f3b376f1e7b0b1bca",
+    "model_config.json": "3173e2cfa92435731f24d3cce5bd52940ac060eb976f86ec0ae19c5b4b88a235",
+    "preprocessing_config_v1.0.json": "f69ce5a4c0c1459df9d1a274c5d36b95d33a2d6c0d3ad6972f7a0d3bad2d20aa",
+    "intabeh_inference.py": "b30e12bca34145d47121391801eb9d2ff3b91e67ee54d4e42212eb684170c41f"
+  },
+  "yamnet": "https://tfhub.dev/google/yamnet/1",
+  "silence_gate_dbfs": -60.0,
+  "decision_policy": "frozen Validation-derived thresholds (thresholds_v0.1.json); argmax reported alongside",
+  "test_lock": {
+    "groups_sha256": "403d92dd39a3715b51da75c5e9cc68b961e6bb4c96a1df54f01949083b3e2d77",
+    "files_sha256": "4cb5c63c9c3450e9d329eaa7c23ab521a0829f5c5a6d39397424dff9262eb0a9"
+  },
+  "rules": [
+    "no retraining, tuning, threshold or preprocessing change after Test evaluation",
+    "Test evaluated once"
+  ]
+}

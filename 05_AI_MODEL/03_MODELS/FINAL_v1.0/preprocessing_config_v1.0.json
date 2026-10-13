@@ -1,0 +1,70 @@
+{
+  "config_version": "1.0",
+  "processed_version": "processed_v1.0",
+  "decision": "D-014",
+  "target_sample_rate": 16000,
+  "channels": "mono (mean of channels)",
+  "output_format": "WAV FLOAT (float32)",
+  "resampler": {
+    "library": "librosa",
+    "function": "librosa.resample",
+    "res_type": "soxr_hq",
+    "librosa_version": "0.11.0",
+    "soxr_version": "1.1.0"
+  },
+  "decoder": {
+    "library": "soundfile",
+    "version": "0.14.0",
+    "libsndfile": "1.2.2"
+  },
+  "min_original_sample_rate": 16000,
+  "edge_trim_threshold": 0.001,
+  "min_duration_sec": 0.3,
+  "clipping_guard": "scale to peak 1.0 only if peak > 1.0",
+  "normalization": "none",
+  "dc_removal": "none",
+  "window_samples": 15600,
+  "hop_samples": 7680,
+  "end_aligned_last_window": true,
+  "short_clip_policy": "centred zero-pad to 15600 samples",
+  "activity_targets": {
+    "min_rms_dbfs": -50.0,
+    "max_below_loudest_window_db": 25.0
+  },
+  "activity_background": {
+    "min_rms_dbfs": -60.0
+  },
+  "train_max_active_windows_per_clip": 20,
+  "app_silence_gate_dbfs": -60.0,
+  "augmentation": {
+    "splits": [
+      "train"
+    ],
+    "copies_per_original": 2,
+    "gain_db": [
+      -6.0,
+      6.0
+    ],
+    "time_shift_samples": [
+      -3840,
+      3840
+    ],
+    "background_mix_probability": 0.5,
+    "background_source": "Train background_other, different source_id",
+    "snr_db_choices": [
+      20,
+      10,
+      5
+    ]
+  },
+  "noise_test_snr_db": {
+    "low_noise": 20,
+    "medium_noise": 10,
+    "high_noise": 5
+  },
+  "seed": 20260924,
+  "yamnet_handle": "https://tfhub.dev/google/yamnet/1",
+  "script": "04_DATA_PROCESSING/02_audio_preprocessing.py",
+  "script_sha256": "1b2c4f4518c0a25b2971b194482fcc00df53874d4d3981762a840c6bfa073945",
+  "created_utc": "2026-09-24T03:47:08+00:00"
+}

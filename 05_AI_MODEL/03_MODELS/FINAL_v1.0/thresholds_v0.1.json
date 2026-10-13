@@ -1,0 +1,24 @@
+{
+  "version": "0.1",
+  "status": "PRELIMINARY - derived from Validation only; not final; Test not used",
+  "model": "v0.1_expC",
+  "created_utc": "2026-09-24T04:08:29+00:00",
+  "rule": "alert class c if argmax == c and p_c >= threshold_c; otherwise treated as background_other (no alert)",
+  "method": "per-class grid 0.30-0.90 step 0.05 maximizing Validation clip-level F1 of class c",
+  "smoke_fire_alarm": "not tuned (3 Validation clips); argmax default kept; not lowered to raise recall (D-022)",
+  "thresholds": {
+    "door_knock": 0.3,
+    "doorbell": 0.55,
+    "baby_cry": 0.3,
+    "timer_alarm": 0.5,
+    "phone_ring": 0.45,
+    "car_horn": 0.3,
+    "dog_bark": 0.3,
+    "running_water": 0.45,
+    "smoke_fire_alarm": null,
+    "background_other": 0.3
+  },
+  "validation_argmax_macro_f1": 0.7604718137254902,
+  "validation_thresholded_macro_f1": 0.7945820508626434,
+  "caveat": "chosen and evaluated on the same small Validation set -> optimistic; re-examine on Day 4"
+}

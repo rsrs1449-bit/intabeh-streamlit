@@ -1,0 +1,16 @@
+{
+  "source": "03_DATASET/04_METADATA/class_map_v1.0.json",
+  "note": "Model output index order. Must stay identical to class_map_v1.0.json.",
+  "labels": [
+    "door_knock",
+    "doorbell",
+    "baby_cry",
+    "timer_alarm",
+    "phone_ring",
+    "car_horn",
+    "dog_bark",
+    "running_water",
+    "smoke_fire_alarm",
+    "background_other"
+  ]
+}
