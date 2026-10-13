@@ -50,10 +50,11 @@ class IntabehModel:
         th = json.loads((pkg / "thresholds_v0.1.json").read_text(encoding="utf-8"))["thresholds"]
         self.thresholds = [th[c] for c in self.labels]
         self.bg = self.labels.index("background_other")
-self.clf = keras.models.load_model(
-    pkg / "model.keras",
-    compile=False
-)        self.yamnet = hub.load(YAMNET_HANDLE)
+        self.clf = keras.models.load_model(
+            pkg / "model.keras",
+            compile=False
+        )
+        self.yamnet = hub.load(YAMNET_HANDLE)
 
     def window_probs(self, y):
         """Return (probabilities for gated windows [k x 10], window starts, gate mask)."""
